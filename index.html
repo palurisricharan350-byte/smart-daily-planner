@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Daily Planner</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10111b;color:white;font-family:Arial,sans-serif;padding:24px}
+.container{max-width:600px;margin:auto}
+h1{font-size:30px}
+p{color:#aaa}
+.card{background:#1c1e2d;padding:20px;border-radius:18px;margin-top:20px}
+input{width:100%;padding:15px;border:1px solid #41445b;border-radius:10px;background:#10111b;color:white;font-size:16px}
+button{padding:13px 18px;border:0;border-radius:10px;background:#8171ff;color:white;font-weight:bold;margin-top:12px}
+.task{display:flex;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid #343548}
+.task span{flex:1;overflow-wrap:anywhere}
+.done{text-decoration:line-through;color:#888}
+.delete{background:#e64e69;margin:0}
+#tasks{margin-top:15px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>☀️ My Daily Planner</h1>
+<p>Plan your day. Achieve your goals.</p>
+<div class="card">
+<h2>Today's Tasks</h2>
+<input id="taskInput" placeholder="Enter your task...">
+<button onclick="addTask()">+ Add Task</button>
+<h3 id="count">0 tasks completed</h3>
+<div id="tasks"></div>
+</div>
+</div>
+<script>
+let tasks=JSON.parse(localStorage.getItem("plannerTasks")||"[]");
+function save(){
+localStorage.setItem("plannerTasks",JSON.stringify(tasks));
+render();
+}
+function addTask(){
+let input=document.getElementById("taskInput");
+let value=input.value.trim();
+if(!value)return;
+tasks.push({text:value,done:false});
+input.value="";
+save();
+}
+function toggleTask(i){
+tasks[i].done=!tasks[i].done;
+save();
+}
+function deleteTask(i){
+tasks.splice(i,1);
+save();
+}
+function render(){
+let box=document.getElementById("tasks");
+box.innerHTML="";
+tasks.forEach((task,i)=>{
+let row=document.createElement("div");
+row.className="task";
+let check=document.createElement("input");
+check.type="checkbox";
+check.style.width="20px";
+check.checked=task.done;
+check.onchange=()=>toggleTask(i);
+let span=document.createElement("span");
+span.textContent=task.text;
+if(task.done)span.className="done";
+let del=document.createElement("button");
+del.className="delete";
+del.textContent="Delete";
+del.onclick=()=>deleteTask(i);
+row.append(check,span,del);
+box.append(row);
+});
+document.getElementById("count").textContent=
+tasks.filter(t=>t.done).length+" tasks completed";
+}
+render();
+</script>
+</body>
+</html>
