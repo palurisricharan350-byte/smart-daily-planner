@@ -83,3 +83,114 @@ render();
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Premium Website</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #080d1b;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #10182c;
+}
+.logo {
+  color: #9a8bff;
+  font-size: 22px;
+  font-weight: bold;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+}
+.hero {
+  text-align: center;
+  padding: 85px 20px;
+}
+.hero h1 {
+  font-size: 38px;
+}
+.hero span {
+  color: #9281ff;
+}
+.hero p {
+  color: #b9c1d5;
+  line-height: 1.7;
+}
+button {
+  padding: 14px 25px;
+  background: linear-gradient(90deg,#6255ff,#a04cff);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 18px;
+  padding: 20px;
+}
+.card {
+  background: #131e35;
+  padding: 25px;
+  border-radius: 15px;
+  border: 1px solid #273653;
+}
+.card p {
+  color: #b9c1d5;
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #8994ad;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MY WEBSITE</div>
+  <a href="#features">Features</a>
+</nav>
+
+<section class="hero">
+  <h1>Build Your <span>Digital Future</span></h1>
+  <p>Learn technology. Build projects. Create something amazing.</p>
+  <button onclick="alert('Welcome to my website!')">
+    Get Started
+  </button>
+</section>
+
+<section class="features" id="features">
+  <div class="card">
+    <h2>💻 Web Design</h2>
+    <p>Create beautiful websites.</p>
+  </div>
+  <div class="card">
+    <h2>⚡ Technology</h2>
+    <p>Learn modern technologies.</p>
+  </div>
+  <div class="card">
+    <h2>🚀 Projects</h2>
+    <p>Build your own projects.</p>
+  </div>
+</section>
+
+<footer>© 2026 My Website</footer>
+
+</body>
+</html>
